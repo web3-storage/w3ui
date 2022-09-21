@@ -1,6 +1,7 @@
 {
   "files": [],
   "references": [
+    { "path": "packages/react-native-wallet" },
     { "path": "packages/react-uploader" },
     { "path": "packages/react-wallet" },
     { "path": "packages/uploader-core" },

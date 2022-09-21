@@ -48,6 +48,12 @@ export interface WaitIdentityVerificationOptions {
   signal?: AbortSignal
 }
 
+export interface Storage {
+  getItem: (key: string) => Promise<string | null>
+  setItem: (key: string, value: string) => Promise<void>
+  removeItem: (key: string) => Promise<void>
+}
+
 /**
  * Create a brand new identity.
  */
@@ -117,8 +123,8 @@ export async function registerIdentity (identity: VerifiedIdentity, proof: Deleg
 /**
  * Load an identity from secure storage.
  */
-export async function loadIdentity ({ email }: Pick<Identity, 'email'>): Promise<Identity | undefined> {
-  const item = localStorage.getItem(`__w3ui_id.mailto:${email}`)
+export async function loadIdentity ({ email }: Pick<Identity, 'email'>, store: Storage): Promise<Identity | undefined> {
+  const item = await store.getItem(`__w3ui_id.mailto:${email}`)
   if (item == null) return
   try {
     const { email, verified, signingAuthorityBytes } = JSON.parse(item)
@@ -132,20 +138,20 @@ export async function loadIdentity ({ email }: Pick<Identity, 'email'>): Promise
 /**
  * Load the default identity from secure storage.
  */
-export async function loadDefaultIdentity (): Promise<Identity | undefined> {
-  const email = localStorage.getItem('__w3ui_id.default.email')
+export async function loadDefaultIdentity (store: Storage): Promise<Identity | undefined> {
+  const email = await store.getItem('__w3ui_id.default.email')
   if (email == null) return
-  return await loadIdentity({ email })
+  return await loadIdentity({ email }, store)
 }
 
 /**
  * Remove the passed identity from secure storage (if exists).
  */
-export async function removeIdentity (identity: Identity): Promise<void> {
-  localStorage.removeItem(`__w3ui_id.mailto:${identity.email}`)
+export async function removeIdentity (identity: Identity, store: Storage): Promise<void> {
+  await store.removeItem(`__w3ui_id.mailto:${identity.email}`)
   const defaultEmail = localStorage.getItem('__w3ui_id.default.email')
   if (identity.email === defaultEmail) {
-    localStorage.removeItem('__w3ui_id.default.email')
+    await store.removeItem('__w3ui_id.default.email')
   }
 }
 
@@ -153,12 +159,12 @@ export async function removeIdentity (identity: Identity): Promise<void> {
  * Store identity locally in secure storage and set the default.
  * TODO: CURRENTLY DOES NOT SAVE SECURELY - SAVES TO LOCALSTORAGE
  */
-export async function storeIdentity (identity: Identity): Promise<void> {
-  const { email, verified, signingAuthority } = identity
+export async function storeIdentity (identity: Identity, store: Storage): Promise<void> {
+  const { email, signingAuthority } = identity
   const signingAuthorityBytes = base64pad.encode(signingAuthority.bytes)
-  localStorage.setItem(
+  await store.setItem(
     `__w3ui_id.mailto:${email}`,
-    JSON.stringify({ email, verified, signingAuthorityBytes })
+    JSON.stringify({ email, signingAuthorityBytes })
   )
-  localStorage.setItem('__w3ui_id.default.email', email)
+  await store.setItem('__w3ui_id.default.email', email)
 }
