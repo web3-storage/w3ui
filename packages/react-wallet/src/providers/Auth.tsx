@@ -55,13 +55,13 @@ export function AuthProvider ({ children }: AuthProviderProps): ReactNode {
   const [identity, setIdentity] = useState<Identity>()
   const [registerAbortController, setRegisterAbortController] = useState<AbortController>()
 
-  const load = async (): Promise<void> => {
+  const load = async (): Promise<Identity|undefined> => {
     const id = await loadDefaultIdentity()
     if (id != null) {
       setIdentity(id)
       if (id.verified) {
         setAuthStatus(AuthStatus.SignedIn)
-        return
+        return id
       }
       await verifyAndRegisterAndStore(id as UnverifiedIdentity)
     }
