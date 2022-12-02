@@ -1,0 +1,43 @@
+{
+  "name": "@w3ui/example-space-manager",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@w3ui/react-keyring": "^1.0.1",
+    "@w3ui/react-uploader": "^2.0.0",
+    "@w3ui/react-uploads-list": "^1.1.2",
+    "@ipld/dag-ucan": "^2.0.1",
+    "blueimp-md5": "^2.19.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.3",
+    "react-scripts": "5.0.1"
+  },
+  "devDependencies": {
+    "eslint-config-standard-jsx": "^11.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "standard",
+      "standard-jsx"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
