@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { useUploader } from '@w3ui/react-uploader'
+import { useW3API } from '@w3ui/react-ui'
 import { withIdentity } from './components/Authenticator'
 import './spinner.css'
 
 export function ContentPage () {
-  const [{ storedDAGShards }, uploader] = useUploader()
+  const { uploader:uploaderApi } = useW3API()
+  const [{ storedDAGShards }, uploader] = uploaderApi
   const [file, setFile] = useState(null)
   const [dataCid, setDataCid] = useState('')
   const [status, setStatus] = useState('')

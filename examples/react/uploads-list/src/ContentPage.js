@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
-import { useUploadsList } from '@w3ui/react-uploads-list'
+import { useW3API } from '@w3ui/react-ui'
 import { withIdentity } from './components/Authenticator'
 import './spinner.css'
 
 export function ContentPage () {
-  const [{ loading, error, data }, { next, reload }] = useUploadsList()
+  const { uploadsList } = useW3API()
+  const [{ loading, error, data }, { next, reload }] = uploadsList
   useEffect(() => {
     next()
   // we really only want to run this once so leave the deps list empty

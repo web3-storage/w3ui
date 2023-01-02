@@ -1,11 +1,17 @@
-import React, { useState } from 'react'
-import { useKeyring } from '@w3ui/react-keyring'
+import React, { useState, useEffect } from 'react'
+import { useW3API } from '@w3ui/react-ui'
 
 export default function Authenticator ({ children }) {
-  const [{ space }, { createSpace, registerSpace, cancelRegisterSpace }] = useKeyring()
+  const { keyring } = useW3API()
+  const [{ space }, { createSpace, registerSpace, cancelRegisterSpace, loadAgent }] = keyring
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
+  useEffect(() => {
+    loadAgent()   // try load default identity - once.
+  // eslint-disable-next-line
+  }, [/* intentionally no deps */])
+  
   if (space?.registered()) {
     return children
   }
