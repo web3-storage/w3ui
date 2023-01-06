@@ -72,26 +72,26 @@ export const Uploader = ({
   const [uploaderState, uploaderActions] = useUploader()
   const [file, setFile] = useState<File>()
   const [dataCid, setDataCid] = useState<Link<unknown, number, number, Version>>()
-  const [status, setStatus] = useState('')
+  const [uploading, setUploading] = useState(false)
   const [error, setError] = useState()
 
   const handleUploadSubmit = async (e: Event): Promise<void> => {
     e.preventDefault()
     if (file != null) {
       try {
-        setStatus('uploading')
+        setUploading(true)
         const cid = await uploaderActions.uploadFile(file)
         setDataCid(cid)
       } catch (err: any) {
         setError(err)
       } finally {
-        setStatus('done')
+        setUploading(true)
       }
     }
   }
 
   const uploaderComponentContextValue = useMemo<UploaderComponentContextValue>(() => [
-    { ...uploaderState, file, dataCid, status, error, handleUploadSubmit },
+    { ...uploaderState, file, dataCid, uploading, error, handleUploadSubmit },
     { ...uploaderActions, setFile }
   ], [uploaderState, file, dataCid, status, error, handleUploadSubmit, uploaderActions, setFile])
 
