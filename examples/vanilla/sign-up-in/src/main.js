@@ -69,14 +69,14 @@ export class RegisterForm extends window.HTMLElement {
   }
 
   toggleConfirmation () {
-    const templateContent = this.confirmationTemplate$.content
+    const templateContent = this.confirmationTemplate$.content.cloneNode(true)
     this.replaceChildren(this.formatTemplateContent(templateContent))
     this.signOutButton$ = document.querySelector(SELECTORS.signOutButton)
     this.signOutButton$.addEventListener('click', this.signOutHandler)
   }
 
   toggleVerification () {
-    const templateContent = this.verificationTemplate$.content
+    const templateContent = this.verificationTemplate$.content.cloneNode(true)
     this.replaceChildren(this.formatTemplateContent(templateContent))
     this.cancelRegistrationButton$ = document.querySelector(SELECTORS.cancelRegistrationButton)
     this.cancelRegistrationButton$.addEventListener('click', this.cancelRegistrationHandler)

@@ -85,22 +85,22 @@ export class UploadFileForm extends window.HTMLElement {
   }
 
   toggleEncoding () {
-    const templateContent = this.encodingTemplate$.content
+    const templateContent = this.encodingTemplate$.content.cloneNode(true)
     this.replaceChildren(this.formatEncodingTemplateContent(templateContent))
   }
 
   toggleUploading () {
-    const templateContent = this.uploadingTemplate$.content
+    const templateContent = this.uploadingTemplate$.content.cloneNode(true)
     this.replaceChildren(this.formatUploadingTemplateContent(templateContent))
   }
 
   toggleUploadComplete () {
-    const templateContent = this.uploadCompleteTemplate$.content
+    const templateContent = this.uploadCompleteTemplate$.content.cloneNode(true)
     this.replaceChildren(this.formatUploadCompleteTemplateContent(templateContent))
   }
 
   toggleUploadError () {
-    const templateContent = this.uploadErrorTemplate$.content
+    const templateContent = this.uploadErrorTemplate$.content.cloneNode(true)
     this.replaceChildren(this.formatUploadErrorTemplateContent(templateContent))
   }
 
@@ -133,7 +133,7 @@ export class UploadFileForm extends window.HTMLElement {
   }
 
   async connectedCallback () {
-    const templateContent = this.uploadFormTemplate$.content
+    const templateContent = this.uploadFormTemplate$.content.cloneNode(true)
     this.replaceChildren(templateContent)
     this.handleFileUpload = this.handleFileUpload.bind(this)
     this.form$ = document.querySelector(SELECTORS.uploadForm)
