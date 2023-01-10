@@ -156,6 +156,16 @@ export default function rollup (options: RollupOptions): RollupOptions[] {
         vue: 'Vue',
         '@w3ui/vue-keyring': 'VueKeyring'
       }
+    }),
+    // vitest only uses ESM modules for custom environments
+    esm({
+      input: 'packages/vitest-environment-w3ui/src/index.ts',
+      outputFile: 'vitest-environment-w3ui',
+      jsName: 'VitestEnvironmentW3ui',
+      packageDir: 'packages/vitest-environment-w3ui',
+      banner: createBanner('vitest-environment-w3ui'),
+      globals: {},
+      external: ['crypto']
     })
   ]
 }
