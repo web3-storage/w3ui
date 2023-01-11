@@ -364,8 +364,10 @@ importers:
       '@ucanto/principal': ^4.0.3
       '@w3ui/keyring-core': workspace:^
       '@web3-storage/access': ^9.2.0
+      ariakit-react-utils: 0.17.0-next.27
     dependencies:
       '@w3ui/keyring-core': link:../keyring-core
+      ariakit-react-utils: 0.17.0-next.27
     devDependencies:
       '@ucanto/interface': 4.0.3
       '@ucanto/principal': 4.0.3
@@ -376,11 +378,13 @@ importers:
       '@w3ui/react-keyring': workspace:^
       '@w3ui/uploader-core': workspace:^
       '@web3-storage/capabilities': ^2.0.0
+      ariakit-react-utils: 0.17.0-next.27
       multiformats: ^10.0.2
     dependencies:
       '@w3ui/react-keyring': link:../react-keyring
       '@w3ui/uploader-core': link:../uploader-core
       '@web3-storage/capabilities': 2.1.0
+      ariakit-react-utils: 0.17.0-next.27
       multiformats: 10.0.3
 
   packages/react-uploads-list:
@@ -388,10 +392,12 @@ importers:
       '@w3ui/react-keyring': workspace:^
       '@w3ui/uploads-list-core': workspace:^
       '@web3-storage/capabilities': ^2.0.0
+      ariakit-react-utils: 0.17.0-next.27
     dependencies:
       '@w3ui/react-keyring': link:../react-keyring
       '@w3ui/uploads-list-core': link:../uploads-list-core
       '@web3-storage/capabilities': 2.1.0
+      ariakit-react-utils: 0.17.0-next.27
 
   packages/solid-keyring:
     specifiers:
@@ -2953,6 +2959,19 @@ packages:
   /argparse/2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
     dev: true
+
+  /ariakit-react-utils/0.17.0-next.27:
+    resolution: {integrity: sha512-YyL3sEowwaw6r8wRjENB9S4Hjz/ppyv5nJNeFkb6xaEX/QYUYmqL+lQch50LW04vj9oa8RGHlY2SmyQX3d7g3w==}
+    peerDependencies:
+      '@types/react': ^17.0.0 || ^18.0.0
+      react: ^17.0.0 || ^18.0.0
+    dependencies:
+      ariakit-utils: 0.17.0-next.27
+    dev: false
+
+  /ariakit-utils/0.17.0-next.27:
+    resolution: {integrity: sha512-IcjtuHl7FZP5mGrpvTSXqPUj+jRuIuBHlJAlxr3y4pxRgYpsYVpyZOClU3yrOoG7KUVApfmJjPOGWy00y+Gi+Q==}
+    dev: false
 
   /array-find-index/1.0.2:
     resolution: {integrity: sha512-M1HQyIXcBGtVywBt8WVdim+lrNaK7VHp99Qt5pSNziXznKHViIBbXWtfRTpEFpF/c4FdfxNAsCCwPp5phBYJtw==}
