@@ -47,7 +47,7 @@ export const Done = ({ file, dataCID, storedDAGShards }: DoneProps): JSX.Element
 export const SimpleUploader = (): JSX.Element => {
   const [{ status, file, error, dataCID, storedDAGShards }] = useUploaderComponent()
   return (
-    <Uploader>
+    <Uploader as='div' className='w3ui-uploader-wrapper'>
       {(status === Status.Uploading)
         ? (
           <Uploading file={file} storedDAGShards={storedDAGShards} />
@@ -62,12 +62,12 @@ export const SimpleUploader = (): JSX.Element => {
                     <Errored error={error} />
                     )
                   : (
-                    <Uploader.Form className=''>
-                      <div className='field'>
-                        <label htmlFor='w3ui-uploader-file'>File:</label>
-                        <Uploader.Input id='w3ui-uploader-file' />
+                    <Uploader.Form>
+                      <div className='w3ui-uploader'>
+                        <label className='w3ui-uploader__label'>File:</label>
+                        <Uploader.Input className='w3ui-uploader__input' />
                       </div>
-                      <button type='submit'>Upload</button>
+                      <button type='submit' className='w3ui-button'>Upload</button>
                     </Uploader.Form>
                     )
           )}
