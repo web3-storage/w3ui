@@ -16,6 +16,9 @@
       "path": "packages/react-uploads-list"
     },
     {
+      "path": "packages/react-ui"
+    },
+    {
       "path": "packages/solid-keyring"
     },
     {

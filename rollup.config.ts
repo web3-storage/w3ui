@@ -91,6 +91,16 @@ export default function rollup (options: RollupOptions): RollupOptions[] {
       }
     }),
     ...buildConfigs({
+      name: 'react-ui',
+      packageDir: 'packages/react-ui',
+      jsName: 'ReactUI',
+      outputFile: 'react-ui',
+      entryFile: 'src/index.ts',
+      globals: {
+        react: 'React'
+      }
+    }),
+    ...buildConfigs({
       name: 'solid-keyring',
       packageDir: 'packages/solid-keyring',
       jsName: 'SolidKeyring',
