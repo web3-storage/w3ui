@@ -15,5 +15,7 @@ runs:
             args: [--frozen-lockfile, --strict-peer-dependencies]
     - run: pnpm run lint
       shell: bash
+    - run: pnpx playwright install 
+      shell: bash
     - run: pnpm test
       shell: bash

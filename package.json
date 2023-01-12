@@ -4,13 +4,19 @@
   "version": "0.0.0",
   "description": "Headless, type-safe, UI components for the next generation Web3.Storage APIs.",
   "author": "Alan Shaw",
-  "maintainers": [ "travis", "yusefnapora", "olizilla" ],
+  "maintainers": [
+    "travis",
+    "yusefnapora",
+    "olizilla"
+  ],
   "license": "Apache-2.0 OR MIT",
   "scripts": {
     "prepare": "pnpm run build && pnpm run compile",
     "build": "rollup --config rollup.config.js && pnpm run typecheck",
     "clean": "rm -rf node_modules package-lock.json coverage packages/*/{package-lock.json,build,node_modules}",
     "compile": "pnpm run --recursive --if-present compile",
+    "build:examples": "pnpm run --recursive --no-bail --if-present build --filter ./examples ",
+    "serve:examples": "serve examples",
     "lint": "ts-standard",
     "test": "pnpm run --recursive --if-present test",
     "typecheck": "tsc -b"
@@ -45,10 +51,16 @@
     "rollup-plugin-size": "^0.2.2",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-visualizer": "^5.8.1",
+    "serve": "^14.1.2",
     "solid-js": "^1.5.6",
     "ts-node": "^10.9.1",
     "ts-standard": "^12.0.1",
     "typescript": "^4.8.2",
     "vue": "^3.2.39"
+  },
+  "ts-standard": {
+    "ignore": [
+      "dist"
+    ]
   }
 }
